@@ -172,8 +172,8 @@ class Board(models.Model):
 
 # 후기 게시판
 class Review(models.Model):
-    # mrapply_num = models.ForeignKey('Mrapply', null = True) # 고친버전
-    mrapply_num = models.ForeignKey('Mrapply', on_delete=models.CASCADE) # 원래버전
+    mrapply_num = models.ForeignKey('Mrapply', null = True) # 고친버전
+    # mrapply_num = models.ForeignKey('Mrapply', on_delete=models.CASCADE) # 원래버전
     r_num = models.IntegerField(primary_key=True)
     # mrapply_num = models.IntegerField(null = True, blank = True)
     mr_title = models.CharField("멘티이름", max_length = 20, null = True, blank = False)

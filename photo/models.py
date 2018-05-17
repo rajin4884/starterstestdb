@@ -178,9 +178,9 @@ class Board(models.Model):
     b_password = models.CharField(max_length=30,null = True, blank = True)
     b_published_date = models.DateTimeField(blank=True, null=True)
     b_hit = models.IntegerField( default = 0) # 조회수
-    b_ref = models.IntegerField()
-    b_re_step = models.IntegerField()
-    b_re_level = models.IntegerField()
+    b_ref = models.IntegerField(null = True, blank = True)
+    b_re_step = models.IntegerField(null = True, blank = True)
+    b_re_level = models.IntegerField(null = True, blank = True)
     tag = TagField()
 
 

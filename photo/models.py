@@ -287,11 +287,11 @@ class Mr_Wish(models.Model):
 class Mrapply(models.Model):
     mrapply_num = models.IntegerField(primary_key=True)
     mr_wish_num = models.ForeignKey('Mr_Wish', on_delete = models.CASCADE) # FK
-    mrapply_con = models.ForeignKey('State', on_delete=models.CASCADE)
+    state_num = models.ForeignKey('State', on_delete=models.CASCADE)
     # mrapply_con = models.IntegerField(blank = False)
     mr_pay_method = models.CharField(max_length=10, null=False)
     mr_credit_com = models.CharField(max_length=10, null=True)
-    state_num = models.IntegerField(null=True)
+    mr_credit_num = models.IntegerField(null=True)
     # mr_apporve_num = models.IntegerField(null=True)
     mr_approve_date = models.DateTimeField(auto_now_add=True)
     mr_depositless_name = models.CharField(max_length=10, null=True)
@@ -317,7 +317,7 @@ class Inter(models.Model):
     inter_apply_num = models.ForeignKey('Interview_apply', on_delete = models.CASCADE) # FK
     inter_pay_method = models.CharField(max_length=10, null=False)
     inter_credit_com = models.CharField(max_length=10, null=True)
-    state_num = models.IntegerField(null=True)
+    inter_credit_num = models.IntegerField(null=True)
     # inter_apporve_num = models.IntegerField(null=True)
     inter_approve_date = models.DateTimeField(auto_now_add=True)
     inter_depositless_name = models.CharField(max_length=10, null=True)

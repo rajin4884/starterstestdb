@@ -171,7 +171,7 @@ class Board_C(models.Model):
 class Board(models.Model):
     # b_num = models.IntegerField(primary_key=True)
     board_c = models.ForeignKey('Board_C', null = True)
-    b_auth = models.ForeignKey('Member_info', null = True)
+    # b_auth = models.ForeignKey('Member_info', null = True)
     owner = models.ForeignKey(User, null=True)
     b_title = models.CharField(max_length = 20, blank = False)
     b_contnet = models.CharField(max_length=500,blank = False)

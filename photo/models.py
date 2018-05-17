@@ -1,11 +1,8 @@
 from __future__ import unicode_literals
 from django.utils.encoding import python_2_unicode_compatible
-
 from django.db import models
 from django.core.urlresolvers import reverse
-
 from photo.fields import ThumbnailImageField
-
 from django.contrib.auth.models import User
 from tagging.fields import TagField
 from django.utils import timezone
@@ -55,7 +52,7 @@ class Company_info(models.Model):
     jobcode = models.ForeignKey('Occupation_type',  on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.company_name
+        return '{} {}'.format(self.id, self.company_name)
 
 
 class Company_select(models.Model):
@@ -152,20 +149,39 @@ class Board_C(models.Model):
     def __str__(self):
         return self.b_categ_name
 
-# 게시판
+# # 게시판1
+# class Board(models.Model):
+#     # b_num = models.IntegerField(primary_key=True)
+#     # board_c = models.ForeignKey('Board_C', null = True)
+#     board_c = models.ForeignKey('Board_C', null = True)
+#     # b_categ_num = models.IntegerField(null=True, blank = True) # 삭제(0516)
+#     owner = models.ForeignKey(User, null=True)
+#     b_title = models.CharField(max_length = 20, blank = False)
+#     b_contnet = models.CharField(max_length=500,blank = False)
+#     b_published_date = models.DateTimeField(blank=True, null=True)
+#     b_hit = models.IntegerField( default = 0)
+#     tag = TagField()
+#     # b_parent_id = models.IntegerField(null=True, blank = True)
+#     # b_parent_id = models.IntegerField(null = True, blank = True)
+#
+#     def __str__(self):
+#         return self.b_title
+
+# 게시판 2
 class Board(models.Model):
-    # b_num = models.IntegerField(primary_key=True)
-    # board_c = models.ForeignKey('Board_C', null = True)
     board_c = models.ForeignKey('Board_C', null = True)
-    b_categ_num = models.IntegerField(null=True, blank = True)
+    b_auth = models.ForeignKey('Member_info', null = True)
     owner = models.ForeignKey(User, null=True)
     b_title = models.CharField(max_length = 20, blank = False)
     b_contnet = models.CharField(max_length=500,blank = False)
+    b_password = models.CharField(max_length=30,null = True, blank = True)
     b_published_date = models.DateTimeField(blank=True, null=True)
-    b_hit = models.IntegerField( default = 0)
+    b_hit = models.IntegerField( default = 0) # 조회수
+    b_ref = models.IntegerField()
+    b_re_step = models.IntegerField()
+    b_re_level = models.IntegerField()
     tag = TagField()
-    # b_parent_id = models.IntegerField(null=True, blank = True)
-    # b_parent_id = models.IntegerField(null = True, blank = True)
+
 
     def __str__(self):
         return self.b_title
@@ -288,9 +304,9 @@ class Mrapply(models.Model):
 
 
 # 멘토링신청정보 상태
-class Mrapply_State(models.Model):
-    mrapply_con = models.IntegerField(primary_key=True)
-    mrapply_name = models.CharField(max_length=10, null=False)
+# class Mrapply_State(models.Model):
+#     mrapply_con = models.IntegerField(primary_key=True)
+#     mrapply_name = models.CharField(max_length=10, null=False)
 
 
 # 면접수수료결제정보
@@ -339,4 +355,4 @@ class Mtr_daily_report(models.Model):
 
 class State(models.Model):
     state_num = models.IntegerField(primary_key=True)
-    mtr_lesson = models.CharField(max_length=10, null=False)
+    state_name = models.CharField(max_length=10, null=False)
